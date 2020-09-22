@@ -25,17 +25,17 @@ app.get('/', function(req, res) {
   res.send('<pre>' + JSON.stringify(received_updates, null, 2) + '</pre>');
 });
 
-// app.get(['/facebook', '/instagram'], function(req, res) {
-//   console.log("req----",req);
-//   if (
-//     req.query['hub.mode'] == 'subscribe' &&
-//     req.query['hub.verify_token'] == token
-//   ) {
-//     res.send(req.query['hub.challenge']);
-//   } else {
-//     res.sendStatus(400);
-//   }
-// });
+app.get(['/facebook', '/instagram'], function(req, res) {
+  console.log("req----",req);
+  if (
+    req.query['hub.mode'] == 'subscribe' &&
+    req.query['hub.verify_token'] == token
+  ) {
+    res.send(req.query['hub.challenge']);
+  } else {
+    res.sendStatus(400);
+  }
+});
 
 app.post('/facebook', function(req, res) {
   console.log('Facebook request body:', req.body);
